@@ -1,0 +1,11 @@
+body{
+	background-image: url(../images/starwarsback.jpg);
+	color: white;
+}
+div{
+	text-align: center;
+}
+#victory, #currentWord, #numGuess, #guessedWord{
+	line-height: 28px;
+	text-align: center;
+}
