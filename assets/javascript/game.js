@@ -1,13 +1,17 @@
 
 // declaring variables
-	var numberGuess = 9;
+	var numberGuess = 13;
 	var wins= 0;
 	var	rightGuess = 0;
 	var newWord = [];
 	var guessUsed = [];
 	var start = [];
 	var choosenWord = [];
+
+	//library of useable words for the game
 	var library = ["skywalker", "vader", "obiwan", "ackbar", "yoda"];
+
+	//
 	var thatWord = document.getElementById("currentWord");
 	var thatNumb = document.getElementById("numGuess");
 	var anotherWord = document.getElementById("guessedWord");
@@ -32,47 +36,52 @@
 		}
 	}
 
+	// reset the game
 	function resetGame() {
 		numberGuess = 12;
 		rightGuess = 0;
-		guessUsed.length = 0;
+		guessUsed = [];
 		start = [];
+		userGuess = [];
 		makeWord();
 		setdash();
 	}
 
-	function pressKey(event){ //everything that happens after key press in this
+	//when a key is pressed, it checks to see if any of the letters are in the word
+	function pressKey(event){ 
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
     for(var i = 0; i < choosenWord.length; i++){
     	if(userGuess === choosenWord[i]){
     		start[i] = userGuess;
 			rightGuess++;
-    	}
+		}
     }
-    numberGuess--; // decrements from guesses
-    guessUsed.push(userGuess); // adds to usedGuess array
+    numberGuess--;
+    guessUsed.push(userGuess);
+
+	if(rightGuess === choosenWord.length){
+		wins++;
+		resetGame();
+	}
+	if(numberGuess < 1){
+		alert("Once you start down the dark side, forever will it dominate your destiny. - Yoda");
+		resetGame();
+	}	
 
     winnerWord.innerHTML = wins;
 	thatWord.innerHTML = start.join(' ');
 	thatNumb.innerHTML = numberGuess;
 	anotherWord.innerHTML = guessUsed;
 
+	console.log(choosenWord);
     console.log(guessUsed);
     console.log(rightGuess);
 	console.log(start);
 
-	if(rightGuess === choosenWord.length){
-		wins++;
-		resetGame();
-		console.log(start);
+	
+	}
 
-	}
-	else if(numberGuess === 0){
-		resetGame();
-		alert("Captain! She has gone from suck to blow!")
-	}
-	}
 
 	document.onkeyup = pressKey;
 	makeWord(library);

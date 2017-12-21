@@ -1,11 +1,20 @@
 body{
-	background-image: url(../images/starwarsback.jpg);
-	color: white;
+	background-image: url(../images/dstarback.jpg);
+	background-size: cover;
+	text-align: left;
 }
-div{
+
+.title{
+	font-size: 50px;
+	color: yellow;
+}
+
+.game{
 	text-align: center;
+	color: #A2A0A0;
 }
+
 #victory, #currentWord, #numGuess, #guessedWord{
-	line-height: 28px;
-	text-align: center;
+	color: green;
+	font-size: 28px;
 }
